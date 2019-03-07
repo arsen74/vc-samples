@@ -4,6 +4,8 @@ namespace CustomerReviews.Web.Security
     {
         public const string CustomerReviewRead = "customerReview:read",
                     CustomerReviewUpdate = "customerReview:update",
-                    CustomerReviewDelete = "customerReview:delete";
+                    CustomerReviewDelete = "customerReview:delete",
+                    CustomerReviewApprove = "customerReview:approve",
+                    CustomerReviewReject = "customerReview:reject";
     }
 }

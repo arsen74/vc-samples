@@ -9,8 +9,7 @@ namespace CustomerReviews.Data.Repositories
     public class CustomerReviewRepository : EFRepositoryBase, ICustomerReviewRepository
     {
         public CustomerReviewRepository()
-        {
-        }
+        { }
 
         public CustomerReviewRepository(string nameOrConnectionString, params IInterceptor[] interceptors)
             : base(nameOrConnectionString, null, interceptors)
@@ -19,10 +18,15 @@ namespace CustomerReviews.Data.Repositories
         }
 
         public IQueryable<CustomerReviewEntity> CustomerReviews => GetAsQueryable<CustomerReviewEntity>();
-        
+
         public CustomerReviewEntity[] GetByIds(string[] ids)
         {
             return CustomerReviews.Where(x => ids.Contains(x.Id)).ToArray();
+        }
+
+        public CustomerReviewEntity GetById(string id)
+        {
+            return CustomerReviews.FirstOrDefault(x => x.Id == id);
         }
 
         public void DeleteCustomerReviews(string[] ids)
@@ -32,6 +36,11 @@ namespace CustomerReviews.Data.Repositories
             {
                 Remove(item);
             }
+        }
+
+        public void Save(CustomerReviewEntity entity)
+        {
+            AddOrUpdate(entity);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

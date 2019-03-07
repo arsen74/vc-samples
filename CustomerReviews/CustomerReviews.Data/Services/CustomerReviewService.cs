@@ -66,5 +66,26 @@ namespace CustomerReviews.Data.Services
                 CommitChanges(repository);
             }
         }
+
+        public void ApproveCustomerReview(string id)
+        {
+            using (var repository = _repositoryFactory())
+            {
+                var item = repository.GetById(id);
+                if (item != null)
+                {
+                    item.IsActive = true;
+                }
+
+                repository.Save(item);
+
+                CommitChanges(repository);
+            }
+        }
+
+        public void RejectCustomerReview(string id)
+        {
+            DeleteCustomerReviews(new[] { id });
+        }
     }
 }

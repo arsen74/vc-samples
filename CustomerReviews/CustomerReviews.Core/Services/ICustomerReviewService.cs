@@ -9,5 +9,9 @@ namespace CustomerReviews.Core.Services
         void SaveCustomerReviews(CustomerReview[] items);
 
         void DeleteCustomerReviews(string[] ids);
+
+        void ApproveCustomerReview(string id);
+
+        void RejectCustomerReview(string id);
     }
 }

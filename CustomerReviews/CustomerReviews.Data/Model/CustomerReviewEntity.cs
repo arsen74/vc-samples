@@ -20,6 +20,15 @@ namespace CustomerReviews.Data.Model
         [StringLength(128)]
         public string ProductId { get; set; }
 
+        [Required]
+        public int Rating { get; set; }
+
+        public int LikeCount { get; set; }
+
+        public int DislikeCount { get; set; }
+
+        public string ReviewPhotoPath { get; set; }
+
         public virtual CustomerReview ToModel(CustomerReview customerReview)
         {
             if (customerReview == null)
@@ -35,6 +44,10 @@ namespace CustomerReviews.Data.Model
             customerReview.Content = Content;
             customerReview.IsActive = IsActive;
             customerReview.ProductId = ProductId;
+            customerReview.Rating = Rating;
+            customerReview.LikeCount = LikeCount;
+            customerReview.DislikeCount = DislikeCount;
+            customerReview.ReviewPhotoPath = ReviewPhotoPath;
 
             return customerReview;
         }
@@ -56,6 +69,10 @@ namespace CustomerReviews.Data.Model
             Content = customerReview.Content;
             IsActive = customerReview.IsActive;
             ProductId = customerReview.ProductId;
+            Rating = customerReview.Rating;
+            LikeCount = customerReview.LikeCount;
+            DislikeCount = customerReview.DislikeCount;
+            ReviewPhotoPath = customerReview.ReviewPhotoPath;
 
             return this;
         }
