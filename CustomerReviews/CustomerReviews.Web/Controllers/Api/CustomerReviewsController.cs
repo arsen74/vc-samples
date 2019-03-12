@@ -91,12 +91,12 @@ namespace CustomerReviews.Web.Controllers.Api
         /// <returns></returns>
         [HttpGet]
         [Route("rating")]
-        [ResponseType(typeof(double))]
+        [ResponseType(typeof(ProductRating))]
         public IHttpActionResult GetProductRating([FromUri] string productId)
         {
             var result = _customerReviewService.GetProductRating(productId);
 
-            return Ok(result);
+            return Ok(new ProductRating { ProductId = productId, Rating = result });
         }
 
         /// <summary>

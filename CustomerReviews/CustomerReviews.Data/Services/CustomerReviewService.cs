@@ -105,7 +105,7 @@ namespace CustomerReviews.Data.Services
                 var item = repository.GetById(id);
                 if (item != null)
                 {
-                    item.IsActive = true;
+                    item.LikeCount = item.LikeCount + 1;
                 }
 
                 repository.Save(item);
@@ -121,7 +121,7 @@ namespace CustomerReviews.Data.Services
                 var item = repository.GetById(id);
                 if (item != null)
                 {
-                    item.IsActive = true;
+                    item.DislikeCount = item.DislikeCount + 1;
                 }
 
                 repository.Save(item);
@@ -134,7 +134,7 @@ namespace CustomerReviews.Data.Services
         {
             var reviews = GetByProductId(id);
 
-            return _ratingCalculator.CalculateRating(reviews);
+            return _ratingCalculator.CalculateRating(reviews.Where(p => p.IsActive));
         }
     }
 }

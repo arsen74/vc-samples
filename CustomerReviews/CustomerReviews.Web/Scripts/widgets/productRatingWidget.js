@@ -15,14 +15,8 @@ angular
                 $scope.loading = true;
 
                 reviewsApi.getProductRating(filter, function (data) {
-                    var sumRating = 0;
-
-                    angular.forEach(data.results, function (review) {
-                        sumRating += review.rating;
-                    });
-
-                    $scope.rating = sumRating > 0
-                        ? sumRating
+                    $scope.rating = data.rating > 0
+                        ? data.rating
                         : null;
 
                     $scope.loading = false;

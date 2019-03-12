@@ -4,7 +4,7 @@ angular.module('CustomerReviews.Web')
             search: { method: 'POST', url: 'api/customerReviews/search' },
             getByIds: { method: 'GET', isArray: true },
             update: { method: 'POST' },
-            getProductRating: { method: 'GET' },
+            getProductRating: { method: 'GET', url: 'api/customerReviews/rating' },
             approve: { method: 'POST', url: 'api/customerReviews/approve' },
             reject: { method: 'POST', url: 'api/customerReviews/reject' }
         });
