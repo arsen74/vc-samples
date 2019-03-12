@@ -29,6 +29,11 @@ namespace CustomerReviews.Data.Repositories
             return CustomerReviews.FirstOrDefault(x => x.Id == id);
         }
 
+        public CustomerReviewEntity[] GetByProductId(string id)
+        {
+            return CustomerReviews.Where(x => x.ProductId == id).ToArray();
+        }
+
         public void DeleteCustomerReviews(string[] ids)
         {
             var items = GetByIds(ids);

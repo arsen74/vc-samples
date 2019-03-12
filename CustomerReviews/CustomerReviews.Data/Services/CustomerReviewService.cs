@@ -12,10 +12,12 @@ namespace CustomerReviews.Data.Services
     public class CustomerReviewService : ServiceBase, ICustomerReviewService
     {
         private readonly Func<ICustomerReviewRepository> _repositoryFactory;
+        private readonly ICustomerReviewRatingCalculator _ratingCalculator;
 
-        public CustomerReviewService(Func<ICustomerReviewRepository> repositoryFactory)
+        public CustomerReviewService(Func<ICustomerReviewRepository> repositoryFactory, ICustomerReviewRatingCalculator ratingCalculator)
         {
             _repositoryFactory = repositoryFactory;
+            _ratingCalculator = ratingCalculator;
         }
 
         public CustomerReview[] GetByIds(string[] ids)
@@ -23,6 +25,14 @@ namespace CustomerReviews.Data.Services
             using (var repository = _repositoryFactory())
             {
                 return repository.GetByIds(ids).Select(x => x.ToModel(AbstractTypeFactory<CustomerReview>.TryCreateInstance())).ToArray();
+            }
+        }
+
+        public CustomerReview[] GetByProductId(string id)
+        {
+            using (var repository = _repositoryFactory())
+            {
+                return repository.GetByProductId(id).Select(x => x.ToModel(AbstractTypeFactory<CustomerReview>.TryCreateInstance())).ToArray();
             }
         }
 
@@ -86,6 +96,45 @@ namespace CustomerReviews.Data.Services
         public void RejectCustomerReview(string id)
         {
             DeleteCustomerReviews(new[] { id });
+        }
+
+        public void AddLikeToCustomerReview(string id)
+        {
+            using (var repository = _repositoryFactory())
+            {
+                var item = repository.GetById(id);
+                if (item != null)
+                {
+                    item.IsActive = true;
+                }
+
+                repository.Save(item);
+
+                CommitChanges(repository);
+            }
+        }
+
+        public void AddDislikeToCustomerReview(string id)
+        {
+            using (var repository = _repositoryFactory())
+            {
+                var item = repository.GetById(id);
+                if (item != null)
+                {
+                    item.IsActive = true;
+                }
+
+                repository.Save(item);
+
+                CommitChanges(repository);
+            }
+        }
+
+        public double GetProductRating(string id)
+        {
+            var reviews = GetByProductId(id);
+
+            return _ratingCalculator.CalculateRating(reviews);
         }
     }
 }

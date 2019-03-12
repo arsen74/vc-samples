@@ -10,6 +10,8 @@ namespace CustomerReviews.Data.Repositories
 
         CustomerReviewEntity[] GetByIds(string[] ids);
 
+        CustomerReviewEntity[] GetByProductId(string id);
+
         CustomerReviewEntity GetById(string id);
 
         void DeleteCustomerReviews(string[] ids);

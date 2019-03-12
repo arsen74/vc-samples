@@ -6,6 +6,7 @@ namespace CustomerReviews.Web.Security
                     CustomerReviewUpdate = "customerReview:update",
                     CustomerReviewDelete = "customerReview:delete",
                     CustomerReviewApprove = "customerReview:approve",
-                    CustomerReviewReject = "customerReview:reject";
+                    CustomerReviewReject = "customerReview:reject",
+                    CustomerReviewValuation = "customerReview:valuation";
     }
 }

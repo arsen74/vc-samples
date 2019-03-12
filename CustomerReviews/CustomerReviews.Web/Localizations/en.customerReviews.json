@@ -7,11 +7,41 @@
                     "modifiedDate": "Last updated",
                     "no-review": "No Customer Reviews found"
                 }
+            },
+
+            "review-details": {
+                "commands": {
+                    "approve": "approve",
+                    "reject": "reject"
+                },
+                "labels": {
+                    "moderated": "Moderated",
+                    "content": "Content",
+                    "createdDate": "Created",
+                    "modifiedDate": "Last updated",
+                    "product":  "Product",
+                    "rating": "Review rating",
+                    "liked": "Liked",
+                    "disliked": "Disliked"
+                },
+
+                "placeholders": {
+                    "content": "Enter text"
+                }
             }
         },
+
         "widgets": {
             "item-detail": {
                 "title": "Customer reviews"
+            },
+
+            "item-rating": {
+                "title": "Average rating"
+            },
+
+            "review-rating": {
+                "title": "Product evaluation"
             }
         }
     }

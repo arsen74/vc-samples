@@ -21,34 +21,22 @@ angular.module('CustomerReviews.Web')
             }
 
             blade.selectNode = function (data) {
-                //$scope.selectedNodeId = data.id;
-
-                //var newBlade = {
-                //    id: 'reviewDetails',
-                //    currentEntityId: data.id,
-                //    currentEntity: data,
-                //    title: data.name,
-                //    controller: 'virtoCommerce.storeModule.storeDetailController',
-                //    template: 'Modules/$(VirtoCommerce.Store)/Scripts/blades/store-detail.tpl.html'
-                //};
-                //bladeNavigationService.showBlade(newBlade, blade);
-            }
-
-            function openBladeNew() {
-                $scope.selectedNodeId = null;
+                $scope.selectedNodeId = data.id;
 
                 var newBlade = {
-                    id: 'storeDetails',
-                    currentEntity: {},
-                    title: 'stores.blades.new-store-wizard.title',
-                    subtitle: 'stores.blades.new-store-wizard.subtitle',
-                    controller: 'virtoCommerce.storeModule.newStoreWizardController',
-                    template: 'Modules/$(VirtoCommerce.Store)/Scripts/wizards/newStore/new-store-wizard.tpl.html'
+                    id: 'reviewDetails',
+                    currentEntityId: data.id,
+                    currentEntity: data,
+                    title: data.name,
+                    controller: 'CustomerReviews.Web.reviewsDetailsController',
+                    template: 'Modules/$(CustomerReviews.Web)/Scripts/blades/reviews-details.tpl.html'
                 };
+
                 bladeNavigationService.showBlade(newBlade, blade);
             }
 
             blade.headIcon = 'fa-comments';
+            blade.title = 'Customer Reviews';
 
             blade.toolbarCommands = [
                 {
@@ -58,14 +46,6 @@ angular.module('CustomerReviews.Web')
                         return true;
                     }
                 },
-                //{
-                //    name: "platform.commands.add", icon: 'fa fa-plus',
-                //    executeMethod: openBladeNew,
-                //    canExecuteMethod: function () {
-                //        return true;
-                //    },
-                //    permission: 'store:create'
-                //}
             ];
 
             // simple and advanced filtering

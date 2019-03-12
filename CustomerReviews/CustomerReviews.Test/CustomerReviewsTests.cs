@@ -17,9 +17,13 @@ namespace CustomerReviews.Test
         private const string ProductId = "testProductId";
         private const string CustomerReviewId = "testId";
 
+        private readonly ICustomerReviewRatingCalculator _ratingCalculator;
+
         public CustomerReviewsTests()
         {
             ConnectionString = "VirtoCommerce";
+
+            _ratingCalculator = new AvarageCustomerReviewRatingCalculator();
         }
 
         [Fact]
@@ -96,7 +100,7 @@ namespace CustomerReviews.Test
         {
             get
             {
-                return new CustomerReviewService(GetRepository);
+                return new CustomerReviewService(GetRepository, _ratingCalculator);
             }
         }
 

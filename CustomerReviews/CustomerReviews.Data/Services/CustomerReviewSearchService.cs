@@ -14,7 +14,9 @@ namespace CustomerReviews.Data.Services
         private readonly Func<ICustomerReviewRepository> _repositoryFactory;
         private readonly ICustomerReviewService _customerReviewService;
 
-        public CustomerReviewSearchService(Func<ICustomerReviewRepository> repositoryFactory, ICustomerReviewService customerReviewService)
+        public CustomerReviewSearchService(
+            Func<ICustomerReviewRepository> repositoryFactory,
+            ICustomerReviewService customerReviewService)
         {
             _repositoryFactory = repositoryFactory;
             _customerReviewService = customerReviewService;
@@ -63,7 +65,9 @@ namespace CustomerReviews.Data.Services
                                  .ToList();
 
                 retVal.Results = _customerReviewService.GetByIds(customerReviewIds.ToArray())
-                                                       .OrderBy(x => customerReviewIds.IndexOf(x.Id)).ToList();
+                    .OrderBy(x => customerReviewIds.IndexOf(x.Id))
+                    .ToList(); ;
+
                 return retVal;
             }
         }

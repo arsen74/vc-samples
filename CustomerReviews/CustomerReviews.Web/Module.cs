@@ -40,6 +40,7 @@ namespace CustomerReviews.Web
             _container.RegisterType<ICustomerReviewRepository>(new InjectionFactory(c => new CustomerReviewRepository(_connectionString, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
             _container.RegisterType<ICustomerReviewSearchService, CustomerReviewSearchService>();
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
+            _container.RegisterType<ICustomerReviewRatingCalculator, AvarageCustomerReviewRatingCalculator>();
 
             // Try to avoid calling _container.Resolve<>();
         }

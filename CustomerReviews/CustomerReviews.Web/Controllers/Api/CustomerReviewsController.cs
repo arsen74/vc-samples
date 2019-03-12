@@ -39,12 +39,28 @@ namespace CustomerReviews.Web.Controllers.Api
         }
 
         /// <summary>
+        /// Get Customer Review by ID
+        /// </summary>
+        /// <param name="ids">IDs</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("")]
+        [ResponseType(typeof(GenericSearchResult<CustomerReview>))]
+        [CheckPermission(Permission = PredefinedPermissions.CustomerReviewRead)]
+        public IHttpActionResult GetByIds([FromUri] string[] ids)
+        {
+            var result = _customerReviewService.GetByIds(ids);
+
+            return Ok(result);
+        }
+
+        /// <summary>
         ///  Create new or update existing customer review
         /// </summary>
         /// <param name="customerReviews">Customer reviews</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("save")]
+        [Route("")]
         [ResponseType(typeof(void))]
         [CheckPermission(Permission = PredefinedPermissions.CustomerReviewUpdate)]
         public IHttpActionResult Update(CustomerReview[] customerReviews)
@@ -59,7 +75,7 @@ namespace CustomerReviews.Web.Controllers.Api
         /// <param name="ids">IDs</param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("delete")]
+        [Route("")]
         [ResponseType(typeof(void))]
         [CheckPermission(Permission = PredefinedPermissions.CustomerReviewDelete)]
         public IHttpActionResult Delete([FromUri] string[] ids)
@@ -69,17 +85,32 @@ namespace CustomerReviews.Web.Controllers.Api
         }
 
         /// <summary>
+        /// Get Product's customer rating
+        /// </summary>
+        /// <param name="productId">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("rating")]
+        [ResponseType(typeof(double))]
+        public IHttpActionResult GetProductRating([FromUri] string productId)
+        {
+            var result = _customerReviewService.GetProductRating(productId);
+
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Approve Customer Review by id
         /// </summary>
-        /// <param name="model">model</param>
+        /// <param name="review">review</param>
         /// <returns></returns>
         [HttpPost]
         [Route("approve")]
         [ResponseType(typeof(void))]
         [CheckPermission(Permission = PredefinedPermissions.CustomerReviewApprove)]
-        public IHttpActionResult Approve(CustomerReviewIdModel model)
+        public IHttpActionResult Approve(CustomerReviewIdModel review)
         {
-            _customerReviewService.ApproveCustomerReview(model?.Id);
+            _customerReviewService.ApproveCustomerReview(review?.Id);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -87,15 +118,45 @@ namespace CustomerReviews.Web.Controllers.Api
         /// <summary>
         /// Reject Customer Review by id
         /// </summary>
-        /// <param name="model">model</param>
+        /// <param name="review">review</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Reject")]
+        [Route("reject")]
         [ResponseType(typeof(void))]
         [CheckPermission(Permission = PredefinedPermissions.CustomerReviewReject)]
-        public IHttpActionResult Reject(CustomerReviewIdModel model)
+        public IHttpActionResult Reject(CustomerReviewIdModel review)
         {
-            _customerReviewService.RejectCustomerReview(model?.Id);
+            _customerReviewService.RejectCustomerReview(review?.Id);
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        /// <summary>
+        /// Like customer review
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("like")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult Like([FromUri] string id)
+        {
+            _customerReviewService.AddLikeToCustomerReview(id);
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        /// <summary>
+        /// Dislike customer review
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("dislike")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult Dislike([FromUri] string id)
+        {
+            _customerReviewService.AddDislikeToCustomerReview(id);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

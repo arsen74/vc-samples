@@ -13,5 +13,11 @@ namespace CustomerReviews.Core.Services
         void ApproveCustomerReview(string id);
 
         void RejectCustomerReview(string id);
+
+        void AddLikeToCustomerReview(string id);
+
+        void AddDislikeToCustomerReview(string id);
+
+        double GetProductRating(string id);
     }
 }
