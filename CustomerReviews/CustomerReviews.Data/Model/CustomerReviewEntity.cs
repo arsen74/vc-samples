@@ -10,6 +10,8 @@ namespace CustomerReviews.Data.Model
         [StringLength(128)]
         public string AuthorNickname { get; set; }
 
+        public string UserId { get; set; }
+
         [Required]
         [StringLength(1024)]
         public string Content { get; set; }
@@ -27,8 +29,6 @@ namespace CustomerReviews.Data.Model
 
         public int DislikeCount { get; set; }
 
-        public string ReviewPhotoPath { get; set; }
-
         public virtual CustomerReview ToModel(CustomerReview customerReview)
         {
             if (customerReview == null)
@@ -41,13 +41,13 @@ namespace CustomerReviews.Data.Model
             customerReview.ModifiedDate = ModifiedDate;
 
             customerReview.AuthorNickname = AuthorNickname;
+            customerReview.UserId = UserId;
             customerReview.Content = Content;
             customerReview.IsActive = IsActive;
             customerReview.ProductId = ProductId;
             customerReview.Rating = Rating;
             customerReview.LikeCount = LikeCount;
             customerReview.DislikeCount = DislikeCount;
-            customerReview.ReviewPhotoPath = ReviewPhotoPath;
 
             return customerReview;
         }
@@ -66,13 +66,13 @@ namespace CustomerReviews.Data.Model
             ModifiedDate = customerReview.ModifiedDate;
 
             AuthorNickname = customerReview.AuthorNickname;
+            UserId = customerReview.UserId;
             Content = customerReview.Content;
             IsActive = customerReview.IsActive;
             ProductId = customerReview.ProductId;
             Rating = customerReview.Rating;
             LikeCount = customerReview.LikeCount;
             DislikeCount = customerReview.DislikeCount;
-            ReviewPhotoPath = customerReview.ReviewPhotoPath;
 
             return this;
         }

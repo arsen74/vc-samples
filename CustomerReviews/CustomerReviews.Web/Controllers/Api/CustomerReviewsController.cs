@@ -134,14 +134,14 @@ namespace CustomerReviews.Web.Controllers.Api
         /// <summary>
         /// Like customer review
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="appraisal">appraisal</param>
         /// <returns></returns>
         [HttpPost]
         [Route("like")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult Like([FromUri] string id)
+        public IHttpActionResult Like(CustomerReviewAppraisalModel appraisal)
         {
-            _customerReviewService.AddLikeToCustomerReview(id);
+            _customerReviewService.AddLikeToCustomerReview(appraisal?.ReviewId, appraisal?.UserId);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -149,14 +149,14 @@ namespace CustomerReviews.Web.Controllers.Api
         /// <summary>
         /// Dislike customer review
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="appraisal">appraisal</param>
         /// <returns></returns>
         [HttpPost]
         [Route("dislike")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult Dislike([FromUri] string id)
+        public IHttpActionResult Dislike(CustomerReviewAppraisalModel appraisal)
         {
-            _customerReviewService.AddDislikeToCustomerReview(id);
+            _customerReviewService.AddDislikeToCustomerReview(appraisal?.ReviewId, appraisal?.UserId);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201810051551355_Initial.Designer.cs">
       <DependentUpon>201810051551355_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903181431088_AddUserToReviews.cs" />
+    <Compile Include="Migrations\201903181431088_AddUserToReviews.Designer.cs">
+      <DependentUpon>201903181431088_AddUserToReviews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CustomerReviewEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +98,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810051551355_Initial.resx">
       <DependentUpon>201810051551355_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181431088_AddUserToReviews.resx">
+      <DependentUpon>201903181431088_AddUserToReviews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

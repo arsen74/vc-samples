@@ -24,8 +24,6 @@ namespace CustomerReviews.Data.Migrations
         }
 
         public override void Down()
-        {
-            DropTable("dbo.CustomerReview");
-        }
+        { }
     }
 }

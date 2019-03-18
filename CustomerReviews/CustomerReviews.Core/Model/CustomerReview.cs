@@ -6,6 +6,8 @@ namespace CustomerReviews.Core.Model
     {
         public string AuthorNickname { get; set; }
 
+        public string UserId { get; set; }
+
         public string Content { get; set; }
 
         public bool IsActive { get; set; }
@@ -17,7 +19,5 @@ namespace CustomerReviews.Core.Model
         public int LikeCount { get; set; }
 
         public int DislikeCount { get; set; }
-
-        public string ReviewPhotoPath { get; set; }
     }
 }

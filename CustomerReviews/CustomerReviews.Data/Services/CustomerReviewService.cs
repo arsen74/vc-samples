@@ -98,11 +98,11 @@ namespace CustomerReviews.Data.Services
             DeleteCustomerReviews(new[] { id });
         }
 
-        public void AddLikeToCustomerReview(string id)
+        public void AddLikeToCustomerReview(string reviewId, string userId)
         {
             using (var repository = _repositoryFactory())
             {
-                var item = repository.GetById(id);
+                var item = repository.GetById(reviewId);
                 if (item != null)
                 {
                     item.LikeCount = item.LikeCount + 1;
@@ -114,11 +114,11 @@ namespace CustomerReviews.Data.Services
             }
         }
 
-        public void AddDislikeToCustomerReview(string id)
+        public void AddDislikeToCustomerReview(string reviewId, string userId)
         {
             using (var repository = _repositoryFactory())
             {
-                var item = repository.GetById(id);
+                var item = repository.GetById(reviewId);
                 if (item != null)
                 {
                     item.DislikeCount = item.DislikeCount + 1;
