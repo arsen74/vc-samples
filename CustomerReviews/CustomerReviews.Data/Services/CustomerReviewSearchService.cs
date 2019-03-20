@@ -35,6 +35,11 @@ namespace CustomerReviews.Data.Services
             {
                 var query = repository.CustomerReviews;
 
+                if (criteria.IsActive.GetValueOrDefault())
+                {
+                    query = query.Where(x => x.IsActive);
+                }
+
                 if (!criteria.ProductIds.IsNullOrEmpty())
                 {
                     query = query.Where(x => criteria.ProductIds.Contains(x.ProductId));
@@ -66,7 +71,7 @@ namespace CustomerReviews.Data.Services
 
                 retVal.Results = _customerReviewService.GetByIds(customerReviewIds.ToArray())
                     .OrderBy(x => customerReviewIds.IndexOf(x.Id))
-                    .ToList(); ;
+                    .ToList();
 
                 return retVal;
             }
